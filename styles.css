@@ -1045,15 +1045,81 @@ main#portfolio {
 /* Footer button styles update */
 .footer-buttons {
     display: flex;
-        justify-content: center;
-    gap: 1rem;
-    margin: 1.5rem 0;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 2rem 0;
+    width: 100%;
+    max-width: 800px;
+    margin: 2rem auto;
 }
 
-.download-btn {
+.footer-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.footer-button {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.footer-button i {
+    font-size: 1rem;
+}
+
+/* Share Container Styles */
+.share-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+}
+
+.share-input-group {
+    display: flex;
+    width: 100%;
+    gap: 0.5rem;
+}
+
+#share-link {
+    flex: 1;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--accent-color);
+    border-radius: 4px;
+    background-color: rgba(100, 255, 218, 0.05);
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+}
+
+#share-link:read-only {
+    cursor: default;
+}
+
+#copy-link {
+    padding: 0.8rem;
+    min-width: 44px;
+}
+
+.generate-btn {
+    width: 100%;
+    justify-content: center;
+    background-color: rgba(100, 255, 218, 0.1);
+}
+
+/* Hover States */
+.footer-button:hover {
+    transform: translateY(-2px);
+    background-color: rgba(100, 255, 218, 0.15);
+}
+
+.download-btn {
     background-color: var(--accent-color);
     color: var(--primary-color);
 }
@@ -1063,9 +1129,30 @@ main#portfolio {
     color: var(--accent-color);
 }
 
-@media (max-width: 768px) {
-    .footer-buttons {
-        flex-direction: column;
+/* Responsive Design */
+@media (min-width: 768px) {
+    .share-container {
+        flex-direction: row;
         align-items: center;
+    }
+
+    .share-input-group {
+        flex: 1;
+    }
+
+    .generate-btn {
+        width: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .footer-button {
+        width: 100%;
+        justify-content: center;
     }
 }

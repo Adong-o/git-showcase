@@ -557,6 +557,38 @@ document.addEventListener('DOMContentLoaded', () => {
             generateAiBioBtn.classList.remove('loading');
         }
     });
+
+    const generateLinkBtn = document.getElementById('generate-link');
+    const shareLinkInput = document.getElementById('share-link');
+    const copyLinkBtn = document.getElementById('copy-link');
+
+    generateLinkBtn.addEventListener('click', () => {
+        // Create a simplified URL with just the username
+        const baseUrl = window.location.origin + window.location.pathname;
+        const simpleUrl = `${baseUrl}?u=${userData.login}`;
+        shareLinkInput.value = simpleUrl;
+    });
+
+    copyLinkBtn.addEventListener('click', async () => {
+        try {
+            await navigator.clipboard.writeText(shareLinkInput.value);
+            const originalText = copyLinkBtn.innerHTML;
+            copyLinkBtn.innerHTML = '<i class="fas fa-check"></i>';
+            setTimeout(() => {
+                copyLinkBtn.innerHTML = originalText;
+            }, 2000);
+        } catch (err) {
+            console.error('Failed to copy text:', err);
+        }
+    });
+
+    // Check if there's a username in the URL when the page loads
+    const urlParams = new URLSearchParams(window.location.search);
+    const usernameParam = urlParams.get('u'); // Changed from 'username' to 'u'
+    if (usernameParam) {
+        document.getElementById('github-username').value = usernameParam;
+        document.getElementById('github-form').dispatchEvent(new Event('submit'));
+    }
 });
 
 // Add this function to get top languages
